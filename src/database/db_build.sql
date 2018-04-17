@@ -22,30 +22,27 @@
 -- isra
 BEGIN;
 
-DROP TABLE IF EXISTS books CASCADE;
-DROP TABLE IF EXISTS reservations CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS books, reservations, users CASCADE;
 
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name TEXT UNIQUE,
   auther TEXT NOT NULL
 );
-CREATE TABLE reservations(
-  book_id INTEGER,
-  user_id INTEGER,
-  start_date DATE,
-  end_date DATE
-);
 CREATE TABLE users(
-  user_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name TEXT,
-  user_name TEXT,
-  password VARCHAR,
+  user_name TEXT UNIQUE,
+  password VARCHAR UNIQUE,
   phone_number INTEGER,
   email VARCHAR
 );
-
+CREATE TABLE reservations(
+  book_id INTEGER REFERENCES books(id),
+  user_id INTEGER REFERENCES users(id),
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL
+);
 COMMIT;
 
 
