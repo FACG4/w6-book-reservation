@@ -5,9 +5,8 @@ DROP TABLE IF EXISTS books, reservation, users CASCADE;
 CREATE TABLE books(
 id SERIAL PRIMARY KEY,
 name VARCHAR(50) UNIQUE,
-author VARCHAR(50) DEFAULT 'unknown'
+author VARCHAR(50)
 );
-
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
 name VARCHAR(50),
@@ -31,6 +30,8 @@ INSERT INTO books (name, author) VALUES
 ('The Great Gatsby', 'F. Scott Fitzgerald'),
 ('The Grapes of Wrath','John Steinbeck'),
 ('Nineteen Eighty-Four','George Orwell'),
-('Ulysses' , 'James Joyce') ;
+('Ulysses' , 'James Joyce');
+
+select * from books;
 
 COMMIT;
