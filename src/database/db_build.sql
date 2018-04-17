@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 BEGIN;
 
 DROP TABLE IF EXISTS books, reservation, users CASCADE;
@@ -26,65 +25,3 @@ end_date DATE NOT NULL
 );
 
 COMMIT;
-=======
--- farah
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- isra
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- ahmed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- eman
->>>>>>> 66ab8fa95d9ade6fba9a5de5ed03774d81e533d3
