@@ -1,9 +1,30 @@
 -- farah
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- isra
 BEGIN;
 
-DROP TABLE IF EXISTS books;
-DROP TABLE IF EXISTS reservations;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS books CASCADE;
+DROP TABLE IF EXISTS reservations CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE books (
   id SERIAL PRIMARY KEY,
@@ -26,27 +47,6 @@ CREATE TABLE users(
 );
 
 COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- isra
-
 
 
 
