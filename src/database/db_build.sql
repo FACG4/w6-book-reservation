@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 BEGIN;
 
 DROP TABLE IF EXISTS books, reservation, users CASCADE;
@@ -10,7 +9,7 @@ author VARCHAR(50)
 );
 
 CREATE TABLE users(
-id INTEGER PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 name VARCHAR(50),
 phone INTEGER,
 email VARCHAR(50) UNIQUE,
@@ -26,65 +25,3 @@ end_date DATE NOT NULL
 );
 
 COMMIT;
-=======
--- farah
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- isra
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- ahmed
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- eman
->>>>>>> 66ab8fa95d9ade6fba9a5de5ed03774d81e533d3
