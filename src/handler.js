@@ -50,7 +50,6 @@ const post = (req, response) => {
   req.on('end', ()=>{
     data = JSON.parse(data);
     postData(data.value, (err, res)=> {
-      //console.log(res);
       if (err) throw new Error(err);
       response.writeHead(200, {'Content-Type': 'application/json'});
       console.log(res.rows[0]);
