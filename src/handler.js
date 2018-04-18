@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const getData =require('./database/queries/get')
-
 const postData = require('./database/queries/post.js');
 
 const contentType = {
@@ -43,4 +42,21 @@ const selectData = (req,res)=>{
 
 }
 
-module.exports= {servePublic,selectData };
+const post = (req, response) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data +=chunk;
+  });
+  req.on('end', ()=>{
+    data = JSON.parse(data);
+    postData(data.value, (err, res)=> {
+      //console.log(res);
+      if (err) throw new Error(err);
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      console.log(res.rows[0]);
+      response.end(JSON.stringify(res));
+    });
+  })
+}
+
+module.exports= {servePublic,selectData, post};
