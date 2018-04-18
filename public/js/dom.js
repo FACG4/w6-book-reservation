@@ -10,13 +10,12 @@ var search = select(".search_btn");
 
 
 search.addEventListener("click", function(){
-  var input = select(".search_book");
-  console.log(input);
 
-    var name_book = input.value;
-    console.log(name_book);
+  var input = select(".search_book");
+  var name_book = input.value;
 
 fetch('/getData','POST' ,name_book,function(res){
+  
   var startDateInput =create('input');
   startDateInput.setAttribute('type', 'date');
   var endDateInput = create('input');

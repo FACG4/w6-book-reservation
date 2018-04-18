@@ -20,7 +20,6 @@ tape('test for get data ',(t)=>{
 
 tape('test for posting data', (t)=>{
   runDbBuild((err, res)=>{
-
   const data={
     book_id:1,
     user_id:2,
