@@ -2,32 +2,36 @@
 function select (selector){
   return document.querySelector(selector);
 }
-
+function create(element){
+  return document.createElement(element);
+}
 
 var search = select(".search_btn");
-var input = select(".search_book");
 
 search.addEventListener("click", function(){
-var name_book = input.value;
+  var input = select(".search_book");
+  console.log(input);
+  
+    var name_book = input.value;
+    console.log(name_book);
 
 fetch('/getData','POST' ,name_book,function(res){
-  console.log(res);
-  var startDateInput = document.createElement('input');
+
+  
+  var startDateInput =create('input');
   startDateInput.setAttribute('type', 'date');
-  var endDateInput = document.createElement('input');
+  var endDateInput = create('input');
   endDateInput.setAttribute('type', 'date');
-  var reserveButton = document.createElement('input');
+  var reserveButton = create('input');
   reserveButton.setAttribute('type', 'button');
-  var li = document.createElement('li');
+  var ul = create(ul);
+  select('#bookContainer').appendChild(ul)
+  var li = create('li');
   li.textContent = res.name;
-  var oldLi = select('#book');
-  var ul = document.createElement('ul');
   ul.appendChild(li);
   ul.appendChild(startDateInput);
   ul.appendChild(endDateInput);
-  ul.appendChild(reserveButton);
-  select('#bookContainer').replaceChild(ul, oldLi)
-  
+  ul.appendChild(reserveButton);  
 
 })
 
