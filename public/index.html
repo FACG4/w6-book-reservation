@@ -3,18 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Book STORE</title>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
-
-    <input type="text" name="" value="" class="search_book">
-    <input type="button" name="" value="Search" class="search_btn">
-    <div class="reservation">
-    </div>
-
-    <h3>This Book Found</h3>
-    <div id="bookContainer">
-    
-    </div>
+    <section class="main">
+      <h1>Our Books Library</h1>
+      <label for="searchBook">Search for a Book</label>
+      <div>
+        <input type="text" id="searchBook" class="search-book">
+        <input type="button" value="Search" class="search-btn" id="searchBtn">
+      </div>
+      <div id="bookContainer" class="book-container">
+      
+      </div>
+    </section>
   </body>
   <script src="./js/request.js"></script>
   <script src="./js/dom.js"></script>
