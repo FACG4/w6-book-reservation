@@ -1,0 +1,34 @@
+* {
+
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../background.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+}
+.main {
+  width: 80%;
+  min-width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.book-container {
+  margin-top: 20px;
+  box-shadow:0 1px 3px 1px rgba(30, 78, 110, 0.877);
+}
+
+.search-book, .search-btn {
+  /* display: inline-block; */
+}
+
+.book, .author {
+  margin: 10px 5px;
+  list-style: none;
+}
