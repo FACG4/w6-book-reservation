@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const request = require('request');
+const postData = require('./database/queries/post.js');
 
 const contentType = {
   html : 'text/html' ,
@@ -23,3 +24,14 @@ const servePublic = (endpoint, res) => {
    }
  })
 }
+
+const data={
+  book_id:1,
+  user_id:2,
+  start_date:'24/3/1999',
+  end_date:'3/4/1356'
+};
+postData(data, (err, res) => {
+  if(err) return console.log(err);
+  console.log(res);
+});

@@ -18,13 +18,15 @@ password VARCHAR(50)
 CREATE TABLE reservation(
 book_id INTEGER REFERENCES books(id),
 user_id INTEGER REFERENCES users(id),
-start_date DATE NOT NULL,
-end_date DATE NOT NULL
+start_date TEXT NOT NULL,
+end_date TEXT NOT NULL
 );
 
 INSERT INTO users (name, phone, email, user_name, password) VALUES
 ('Israa', 0597332457, 'isramm94@gmail.com', 'Israa94', '123456'),
-('Farah', 0876564536, 'FarahZaqout@gmail.com', 'Farah123','123476');
+('Farah', 0876564536, 'FarahZaqout@gmail.com', 'Farah123','123476'),
+('Ahmad', 8756434233, 'AhmadShatat@hotmail.com', 'Ahmad80', '12987'),
+('Iman', 5789053321, 'ImanHijjo@gmail.com','Iman23','767893' );
 
 INSERT INTO books (name, author) VALUES
 ('The Great Gatsby', 'F. Scott Fitzgerald'),
@@ -35,6 +37,7 @@ INSERT INTO books (name, author) VALUES
 INSERT INTO books (name) VALUES
 ('hbrfd');
 
-select * from books;
+select * from reservation;
+
 
 COMMIT;
