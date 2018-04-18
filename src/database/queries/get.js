@@ -2,7 +2,7 @@ const connection = require('../db_connect');
 
 
 const getData = (cb)=>{
-const sql =" select name from books" ;
+const sql ="SELECT name FROM books" ;
 connection.query(sql,(err,res)=>{
   if(err){
    return cb(err)
