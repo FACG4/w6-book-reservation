@@ -8,6 +8,7 @@ const runDbBuild = require('../src/database/db_build');
 tape('test for get data ',(t)=>{
   runDbBuild((err, res)=>{
   getData('gatsby', (err,res)=>{
+    console.log(res);
     if (err)return t.fail(err);
     const actual = res[0].name;
     const expected = 'The Great Gatsby';
