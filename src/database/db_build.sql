@@ -18,8 +18,8 @@ password VARCHAR(50)
 CREATE TABLE reservation(
 book_id INTEGER REFERENCES books(id),
 user_id INTEGER REFERENCES users(id),
-start_date TEXT NOT NULL,
-end_date TEXT NOT NULL
+start_date DATE NOT NULL,
+end_date DATE NOT NULL
 );
 
 INSERT INTO users (name, phone, email, user_name, password) VALUES
@@ -36,8 +36,5 @@ INSERT INTO books (name, author) VALUES
 
 INSERT INTO books (name) VALUES
 ('hbrfd');
-
-select * from reservation;
-
 
 COMMIT;
