@@ -7,10 +7,10 @@ const runDbBuild = require('../src/database/db_build');
 
 tape('test for get data ',(t)=>{
   runDbBuild((err, res)=>{
-  getData('Lord', (err,res)=>{
+  getData('gatsby', (err,res)=>{
     if (err)return t.fail(err);
     const actual = res[0].name;
-    const expected = 'The Lord of the Rings';
+    const expected = 'The Great Gatsby';
     t.equal(actual,expected,'this test get data');
     t.end();
   })

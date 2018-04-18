@@ -6,7 +6,7 @@ const dbConnect = (cb) => {
 dbcon.query(sql, (err,res)=>{
   if(err) return cb(err);
   cb(null, res);
-   console.log('book_res database has been initialized with: ', res[8].rows);
+   console.log('book_res database has been initialized');
 })
 }
 
