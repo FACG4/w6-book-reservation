@@ -28,7 +28,6 @@ fetch('/getData','POST' ,name_book,function(res){
   ul.appendChild(reserveButton);
   select('#bookContainer').replaceChild(ul, oldLi)
 
-
 })
 
 
