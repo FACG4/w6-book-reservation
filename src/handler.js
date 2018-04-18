@@ -33,7 +33,7 @@ const selectData = (req,res)=>{
   });
   req.on('end',()=>{
     data=JSON.parse(data);
-    console.log(data.value);
+    // console.log(data.value);
     
     getData(data.value , (err,result)=>{
       if(err) throw new Error(err);
@@ -41,7 +41,7 @@ const selectData = (req,res)=>{
       res.end(JSON.stringify(result))
     })
   })
-  
+
 }
 
 module.exports= {servePublic,selectData };
