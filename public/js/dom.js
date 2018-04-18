@@ -24,7 +24,7 @@ fetch('/getData','POST' ,name_book,function(res){
   endDateInput.setAttribute('type', 'date');
   var reserveButton = create('input');
   reserveButton.setAttribute('type', 'button');
-  reserveButton.setAttribute('value', 'reserv');
+  reserveButton.setAttribute('value', 'reserve');
   var ul = create(ul);
   select('#bookContainer').appendChild(ul)
   var li1 = create('li');
