@@ -8,11 +8,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test node test/test.js | tap-spec",
-<<<<<<< HEAD
-    "server": "nodemon src/server.js"
-=======
-    "server": "node src/server.js"
->>>>>>> 2856aa12ff107a32858453b52cfef97c64603da9
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
