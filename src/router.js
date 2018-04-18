@@ -5,7 +5,11 @@ const router  = (req ,res)=>{
   const {url} = req;
   if(url === '/') {
     handler.servePublic('index.html',res);
-  }else{
+  }else if(url === '/getData'){
+   handler.selectData (req,res);
+    
+  }
+  else{
     handler.servePublic(url, res);
   }
 }

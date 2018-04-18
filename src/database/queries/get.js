@@ -1,8 +1,11 @@
 const connection = require('../db_connect');
 
 
-const getData = (cb)=>{
-const sql ="SELECT name FROM books" ;
+const getData = (search_value,cb)=>{
+const sql ={
+  text :"SELECT * FROM books WHERE name =$1",
+  values: [search_value]
+} ;
 connection.query(sql,(err,res)=>{
   if(err){
    return cb(err)
