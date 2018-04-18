@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const getData =require('./database/queries/get')
+
 const postData = require('./database/queries/post.js');
 
 const contentType = {
@@ -22,17 +24,24 @@ const servePublic = (endpoint, res) => {
      res.end(file);
    }
  })
+};
+
+const selectData = (req,res)=>{
+  let data = '';
+  req.on("data",(chunck)=>{
+    data += chunck
+  });
+  req.on('end',()=>{
+    data=JSON.parse(data);
+    console.log(data.value);
+    
+    getData(data.value , (err,result)=>{
+      if(err) throw new Error(err);
+      res.writeHead(200,{"Content-Type":"application/json"});
+      res.end(JSON.stringify(result))
+    })
+  })
+  
 }
 
-
-// const data={
-//   book_id:1,
-//   user_id:2,
-//   start_date:'24/3/1999',
-//   end_date:'3/4/1356'
-// };
-// postData(data, (err, res) => {
-//   if(err) return console.log(err);
-//   console.log(res);
-// });
-module.exports= {servePublic};
+module.exports= {servePublic,selectData };
