@@ -10,7 +10,7 @@ author VARCHAR(50) DEFAULT 'unknown'
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
 name VARCHAR(50),
-phone INTEGER,
+phone VARCHAR(20),
 email VARCHAR(50) UNIQUE,
 user_name VARCHAR(50) UNIQUE,
 password VARCHAR(50)
@@ -23,10 +23,10 @@ end_date DATE NOT NULL
 );
 
 INSERT INTO users (name, phone, email, user_name, password) VALUES
-('Israa', 0597332457, 'isramm94@gmail.com', 'Israa94', '123456'),
-('Farah', 0876564536, 'FarahZaqout@gmail.com', 'Farah123','123476'),
-('Ahmad', 8756434233, 'AhmadShatat@hotmail.com', 'Ahmad80', '12987'),
-('Iman', 5789053321, 'ImanHijjo@gmail.com','Iman23','767893' );
+('Israa', '0597332457', 'isramm94@gmail.com', 'Israa94', '123456'),
+('Farah', '0876564536', 'FarahZaqout@gmail.com', 'Farah123','123476'),
+('Ahmad', '8756434233', 'AhmadShatat@hotmail.com', 'Ahmad80', '12987'),
+('Iman', '5789053321', 'ImanHijjo@gmail.com','Iman23','767893' );
 
 INSERT INTO books (name, author) VALUES
 ('The Great Gatsby', 'F. Scott Fitzgerald'),
