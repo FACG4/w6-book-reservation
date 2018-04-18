@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const getData =require('./database/queries/get')
 
+const postData = require('./database/queries/post.js');
 
 const contentType = {
   html : 'text/html' ,
