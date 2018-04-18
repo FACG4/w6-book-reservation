@@ -33,12 +33,14 @@ const selectData = (req,res)=>{
   });
   req.on('end',()=>{
     data=JSON.parse(data);
-    console.log(data.value);
-    
+  //console.log(data.value);
+  
     getData(data.value , (err,result)=>{
       if(err) throw new Error(err);
       res.writeHead(200,{"Content-Type":"application/json"});
-      res.end(JSON.stringify(result))
+      console.log(typeof result);
+      
+      res.end(JSON.stringify(result[0]))
     })
   })
   
