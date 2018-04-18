@@ -17,7 +17,7 @@ search.addEventListener("click", function(){
 
 fetch('/getData','POST' ,name_book,function(res){
 
-  
+  console.log(res);
   var startDateInput =create('input');
   startDateInput.setAttribute('type', 'date');
   var endDateInput = create('input');
@@ -26,9 +26,12 @@ fetch('/getData','POST' ,name_book,function(res){
   reserveButton.setAttribute('type', 'button');
   var ul = create(ul);
   select('#bookContainer').appendChild(ul)
-  var li = create('li');
-  li.textContent = res.name;
-  ul.appendChild(li);
+  var li1 = create('li');
+  var li2 = create('li');
+  li1.textContent = res.name;
+  li2.textContent = res.author;
+  ul.appendChild(li1);
+  ul.appendChild(li2)
   ul.appendChild(startDateInput);
   ul.appendChild(endDateInput);
   ul.appendChild(reserveButton);  
