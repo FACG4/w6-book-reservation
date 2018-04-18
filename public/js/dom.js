@@ -15,7 +15,7 @@ search.addEventListener("click", function(){
   var name_book = input.value;
 
 fetch('/getData','POST' ,name_book,function(res){
-  
+
   var startDateInput =create('input');
   startDateInput.setAttribute('type', 'date');
   var endDateInput = create('input');
@@ -30,6 +30,13 @@ fetch('/getData','POST' ,name_book,function(res){
   ul.appendChild(startDateInput);
   ul.appendChild(endDateInput);
   ul.appendChild(reserveButton);
+
+  reserveButton.addEventListener('click', function(){
+    var data = {bookId: res.id, startDate: startDateInput.value, endDate: endDateInput.value, userId: 1}
+    fetch('/postData', 'POST', data, function(res){
+      alert('your book has been successfully reserved from ' + data.startDate + ' to ' + data.endDate);
+    })
+  })
 })
 
 
