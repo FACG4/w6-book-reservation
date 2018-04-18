@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const request = require('request');
+
 
 const contentType = {
   html : 'text/html' ,
@@ -23,3 +23,5 @@ const servePublic = (endpoint, res) => {
    }
  })
 }
+
+module.exports= {servePublic};
