@@ -3,7 +3,7 @@ function fetch(url,method ,value, callback){
 xhr.onreadystatechange = function(){
   if(xhr.readyState === 4 && xhr.status === 200){
     var response = xhr.responseText;
-    callback(response);
+    callback(JSON.parse(response));
   }
 }
 var data= JSON.stringify({value})
