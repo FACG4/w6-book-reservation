@@ -34,7 +34,6 @@ INSERT INTO books (name, author) VALUES
 ('Nineteen Eighty-Four','George Orwell'),
 ('Ulysses' , 'James Joyce');
 
-INSERT INTO books (name) VALUES
-('hbrfd');
+
 
 COMMIT;

@@ -15,18 +15,21 @@ search.addEventListener("click", function(){
   var name_book = input.value;
 
 fetch('/getData','POST' ,name_book,function(res){
-
   var startDateInput =create('input');
   startDateInput.setAttribute('type', 'date');
   var endDateInput = create('input');
   endDateInput.setAttribute('type', 'date');
   var reserveButton = create('input');
   reserveButton.setAttribute('type', 'button');
+  reserveButton.setAttribute('value', 'reserve');
   var ul = create(ul);
   select('#bookContainer').appendChild(ul)
-  var li = create('li');
-  li.textContent = res.name;
-  ul.appendChild(li);
+  var li1 = create('li');
+  var li2 = create('li');
+  li1.textContent = res.name;
+  li2.textContent = 'AUTHOR' +' ' +res.author;
+  ul.appendChild(li1);
+  ul.appendChild(li2)
   ul.appendChild(startDateInput);
   ul.appendChild(endDateInput);
   ul.appendChild(reserveButton);
