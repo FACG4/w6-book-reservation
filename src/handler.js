@@ -34,9 +34,14 @@ const selectData = (req,res)=>{
     data=JSON.parse(data);
     getData(data.value , (err,result)=>{
       if(err) throw new Error(err);
-      res.writeHead(200,{"Content-Type":"application/json"});
-
-      res.end(JSON.stringify(result[0]))
+      if(!result[0]){
+        res.writeHead(200,{"Content-Type":"application/json"});
+        res.end(JSON.stringify({ name: 'there are no avaliable books that fit your search', author: '  None'}))
+        
+      } else {
+        res.writeHead(200,{"Content-Type":"application/json"});
+        res.end(JSON.stringify(result[0]))
+      }
     })
   })
 
