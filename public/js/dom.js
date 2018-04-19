@@ -36,6 +36,7 @@ search.addEventListener("click", function(){
       var li1 = create('li');
       li1.textContent = res.name;
       li1.className = 'book';
+      ul.appendChild(li1);
       if (res.author){
         var li2 = create('li');
         li2.textContent = 'AUTHOR' +' ' +res.author;
@@ -47,7 +48,6 @@ search.addEventListener("click", function(){
         ul.appendChild(endDateInput);
         ul.appendChild(reserveButton);
       }
-      ul.appendChild(li1);
       var oldUl = select('#bookContainer').firstElementChild;
       select('#bookContainer').replaceChild(ul, oldUl)
       
