@@ -21,7 +21,6 @@ user_id INTEGER REFERENCES users(id),
 start_date DATE NOT NULL,
 end_date DATE NOT NULL
 );
-
 INSERT INTO users (name, phone, email, user_name, password) VALUES
 ('Israa', '0597332457', 'isramm94@gmail.com', 'Israa94', '123456'),
 ('Farah', '0876564536', 'FarahZaqout@gmail.com', 'Farah123','123476'),
