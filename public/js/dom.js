@@ -34,18 +34,20 @@ search.addEventListener("click", function(){
       reserveButton.setAttribute('value', 'reserve');
       var ul = create(ul);
       var li1 = create('li');
-      var li2 = create('li');
       li1.textContent = res.name;
-      li2.textContent = 'AUTHOR' +' ' +res.author;
       li1.className = 'book';
-      li2.className = 'author';
+      if (res.author){
+        var li2 = create('li');
+        li2.textContent = 'AUTHOR' +' ' +res.author;
+        li2.className = 'author';
+        ul.appendChild(li2)
+        ul.appendChild(startLabel);
+        ul.appendChild(startDateInput);
+        ul.appendChild(endLabel);
+        ul.appendChild(endDateInput);
+        ul.appendChild(reserveButton);
+      }
       ul.appendChild(li1);
-      ul.appendChild(li2)
-      ul.appendChild(startLabel);
-      ul.appendChild(startDateInput);
-      ul.appendChild(endLabel);
-      ul.appendChild(endDateInput);
-      ul.appendChild(reserveButton);
       var oldUl = select('#bookContainer').firstElementChild;
       select('#bookContainer').replaceChild(ul, oldUl)
       
