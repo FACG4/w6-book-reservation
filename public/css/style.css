@@ -21,11 +21,12 @@ body {
 }
 .book-container {
   margin-top: 20px;
+  background-color: whitesmoke;
   box-shadow:0 1px 3px 1px rgba(30, 78, 110, 0.877);
 }
 
-.search-book, .search-btn {
-  /* display: inline-block; */
+.hide {
+  display: none;
 }
 
 .book, .author {
