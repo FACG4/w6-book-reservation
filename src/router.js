@@ -10,7 +10,9 @@ const router  = (req ,res)=>{
 
  } else if (url === '/postData'){
     handler.post (req,res);
- }
+ }else if(url === '/form'){
+  handler.signup(req,res);
+}
   else{
     handler.servePublic(url, res);
   }

@@ -58,4 +58,20 @@ const post = (req, response) => {
   })
 }
 
+
+const signup = (req,res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data +=chunk;
+  });
+  req.on('end', ()=>{
+    data = JSON.parse(data);
+       console.log(data);
+  }); 
+      response.writeHead(302, { 'location':'/home','Content-Type': 'application/json'});
+    
+      response.end();
+    };
+
+
 module.exports= {servePublic,selectData, post};
