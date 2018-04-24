@@ -1,7 +1,7 @@
 {
   "name": "w6-book-reservation",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Heroku App](https://w6-book.herokuapp.com/)",
   "main": "index.js",
   "directories": {
     "test": "test"

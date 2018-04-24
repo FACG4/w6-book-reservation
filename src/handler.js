@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const getData =require('./database/queries/get')
 const postData = require('./database/queries/post.js');
+const postUser = require('./database/queries/post_signup.js');
 
 const contentType = {
   html : 'text/html' ,
@@ -37,7 +38,7 @@ const selectData = (req,res)=>{
       if(!result[0]){
         res.writeHead(200,{"Content-Type":"application/json"});
         res.end(JSON.stringify({ name: 'There are no avaliable books that fit your search'}))
-        
+
       } else {
         res.writeHead(200,{"Content-Type":"application/json"});
         res.end(JSON.stringify(result[0]))
@@ -63,4 +64,20 @@ const post = (req, response) => {
   })
 }
 
-module.exports= {servePublic,selectData, post};
+const postUser1 = (req, response) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data +=chunk;
+  });
+  req.on('end', ()=>{
+    data = JSON.parse(data);
+    postUser(data, (err, res)=> {
+      if (err) throw new Error(err);
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      console.log(res.rows[0]);
+      response.end(JSON.stringify(res));
+    });
+  })
+}
+
+module.exports= {servePublic,selectData, post, postUser1};
