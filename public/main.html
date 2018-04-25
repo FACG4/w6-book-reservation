@@ -114,11 +114,11 @@ hr {
 
 <h2>Book Reservations</h2>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+<!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 <button  style="width:auto;">Sign in</button>
 
 <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <span onclick="document.getElementById('id01').style.display='block'" class="close" title="Close Modal">&times;</span> -->
   <form class="modal-content">
     <div class="container">
       <h1>Sign Up</h1>
@@ -148,9 +148,10 @@ hr {
       </div>
     </div>
   </form>
-</div>
+<!-- </div> -->
+  <p class="error"></p>
 
-<script>
+<!-- <script>
 // Get the modal
 var modal = document.getElementById('id01');
 
@@ -160,7 +161,8 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-</script>
+</script> -->
+<script src="./js/request.js"></script>
 <script src="./js/dom-signup.js"></script>
 
 </body>

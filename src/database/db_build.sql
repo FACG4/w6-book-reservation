@@ -19,11 +19,11 @@ user_id INTEGER REFERENCES users(id),
 start_date DATE NOT NULL,
 end_date DATE NOT NULL
 );
-INSERT INTO users (email, user_name, password) VALUES
-( 'isramm94@gmail.com', 'Israa94', '123456'),
-( 'FarahZaqout@gmail.com', 'Farah123','123476'),
-('AhmadShatat@hotmail.com', 'Ahmad80', '12987'),
-('ImanHijjo@gmail.com','Iman23','767893' );
+INSERT INTO users (name, email, password) VALUES
+('Israa', 'isramm94@gmail.com', '123456'),
+('Farah', 'FarahZaqout@gmail.com','123476'),
+('Ahmad', 'AhmadShatat@hotmail.com', '12987'),
+('Iman', 'ImanHijjo@gmail.com','767893' );
 
 INSERT INTO books (name, author) VALUES
 ('The Great Gatsby', 'F. Scott Fitzgerald'),

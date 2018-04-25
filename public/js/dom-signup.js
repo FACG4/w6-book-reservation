@@ -5,36 +5,62 @@ function select(selector) {
 function create(element) {
   return document.createElement(element);
 }
-function fetch1(url,method ,value, callback){
-  var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function(){
-  if(xhr.readyState === 4 && xhr.status === 200){
-    var response = xhr.responseText;
-  callback(JSON.parse({response}));
-  }
-}
-var data= JSON.stringify(value)
-xhr.open(method, url);
-xhr.send(data);
-}
 var signup_btn = select('.signupbtn');
 var form_content = select('.modal-content');
 var user_name = select('.usr-name');
 var email = select('.email');
 var psw = select('.psw');
 var psw_repeat = select('.psw-repeat');
+var error =select(".error");
 var emailRegex=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}/
 
-signup_btn.addEventListener("click", function() {
-  var data = {email: email.value, user_name: user_name.value, password: psw.value}
-  if (user_name.value.length === 0 || email.value.length === 0 || psw.value.length === 0 || psw_repeat.value.length === 0
-  || !email.value.match(emailRegex)) {
-    alert('Fill the required fields properly!!!');
+form_content.addEventListener("submit", function(event) {
+  event.preventDefault();
+  var info = { email:email.value,user:user_name.value,password:psw.value};
+  if (psw.validity.valueMissing || psw_repeat.validity.valueMissing) {
+    error.innerText = "Please enter a password";
+    event.preventDefault();
   }
-  else{
-    fetch1('/sign-up', 'POST', JSON.stringify(data), function(res){
-      alert('user is successfully signed up with the email' + data.email + ' and user name ' + data.user_name);
+
+  // if (
+  //   password.validity.patternMismatch ||
+  //   confirmPassword.validity.patternMismatch
+  // ) {
+  //   error.innerText =
+  //     "including one letter and one number";
+  //   event.preventDefault();
+  // }
+
+  if (psw.value != psw_repeat.value) {
+    error.innerText = "Passwords do not match";
+    event.preventDefault();
+  }
+
+  if (email.validity.typeMismatch) {
+    error.innerText = "Please enter a valid email address";
+    event.preventDefault();
+  }
+
+  if (email.validity.valueMissing) {
+    error.innerText = "Please enter an email address";
+    event.preventDefault();
+
+  }else{
+    fetchApi('/form','POST',info,(err,res)=>{
+      console.log(res);
+      if(res === 200){
+        window.location.pathname='/back';
+      }
+
+      else{
+        error.innerText=err
+      }
+
 
     })
+    email.value='';
+    psw.value='';
+    psw_repeat.value='';
+    user_name.value='';
   }
-})
+});
