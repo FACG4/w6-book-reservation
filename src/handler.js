@@ -12,6 +12,32 @@ const contentType = {
   js  : 'text/javascript'
 }
 
+const signup = (req,res)=>{
+  let body = ''
+   req.on('data', (chunk) => {
+     // console.log(chunk);
+     body += chunk;
+
+   })
+   req.on('end', () => {
+     bodyData = JSON.parse(body);
+     console.log(bodyData);
+    postUser(bodyData,(err, result)=> {
+      if (err) throw new Error(err);
+      // res.writeHead(200, {'Content-Type': 'application/json'});
+      res.writeHead(
+        302,
+        {
+          'Location': '/back'
+          // 'Set-Cookie': `jwt=${cookie}; HttpOnly`
+        }
+      );
+      res.end();
+    });
+   });
+
+
+}
 const servePublic = (endpoint, res) => {
  const filePath =path.join(__dirname,'..','public',endpoint);
  const fileExtention = endpoint.split('.')[1];
@@ -64,20 +90,20 @@ const post = (req, response) => {
   })
 }
 
-const postUser1 = (req, response) => {
-  let data = '';
-  req.on('data', (chunk) => {
-    data +=chunk;
-  });
-  req.on('end', ()=>{
-    data = JSON.parse(data);
-    postUser(data, (err, res)=> {
-      if (err) throw new Error(err);
-      response.writeHead(200, {'Content-Type': 'application/json'});
-      console.log(res.rows[0]);
-      response.end(JSON.stringify(res));
-    });
-  })
-}
+// const postUser1 = (req, response) => {
+//   let data = '';
+//   req.on('data', (chunk) => {
+//     data +=chunk;
+//   });
+//   req.on('end', ()=>{
+//     data = JSON.parse(data);
+//     postUser(data, (err, res)=> {
+//       if (err) throw new Error(err);
+//       response.writeHead(200, {'Content-Type': 'application/json'});
+//       // console.log(res.rows[0]);
+//       response.end(JSON.stringify(res));
+//     });
+//   })
+// }
 
-module.exports= {servePublic,selectData, post, postUser1};
+module.exports= {servePublic,selectData, post, signup};

@@ -10,7 +10,7 @@ function fetch1(url,method ,value, callback){
 xhr.onreadystatechange = function(){
   if(xhr.readyState === 4 && xhr.status === 200){
     var response = xhr.responseText;
-    callback(JSON.parse(response));
+  callback(JSON.parse({response}));
   }
 }
 var data= JSON.stringify(value)
@@ -32,8 +32,43 @@ signup_btn.addEventListener("click", function() {
     alert('Fill the required fields properly!!!');
   }
   else{
-    fetch1('/sign_up', 'POST', data, function(res){
+    fetch1('/sign-up', 'POST', JSON.stringify(data), function(res){
       alert('user is successfully signed up with the email' + data.email + ' and user name ' + data.user_name);
+
     })
   }
 })
+//
+// window.addEventListener("load", function () {
+//   console.log('HELOOOO');
+//   function sendData() {
+//     var XHR = new XMLHttpRequest();
+//
+//     // Bind the FormData object and the form element
+//     var formData = new FormData(form_content);
+//     console.log(FormData));
+//
+//     // Define what happens on successful data submission
+//     XHR.addEventListener("load", function(event) {
+//       console.log(event.target.responseText);
+//        alert("The server says: " + event.target.response);
+//     });
+//
+//     // Define what happens in case of error
+//     XHR.addEventListener("error", function(event) {
+//       alert('Oops! Something went wrong.');
+//     });
+//
+//     XHR.open("POST", "/sign-up");
+//     XHR.send(formData);
+//   }
+//
+//   // Access the form element...
+//
+//   // ...and take over its submit event.
+//   form_content.addEventListener("submit", function (event) {
+//     console.log('HELOOOO FROM FORM EVENT LISTENER');
+//     event.preventDefault();
+//     sendData();
+//   });
+// })
