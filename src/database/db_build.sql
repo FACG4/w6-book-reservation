@@ -21,7 +21,7 @@ end_date DATE NOT NULL
 );
 INSERT INTO users (name, email, password) VALUES
 ('Israa', 'isramm94@gmail.com', '123456'),
-('Farah',  'FarahZaqout@gmail.com','123476'),
+('Farah', 'FarahZaqout@gmail.com','123476'),
 ('Ahmad', 'AhmadShatat@hotmail.com', '12987'),
 ('Iman', 'ImanHijjo@gmail.com','767893' );
 

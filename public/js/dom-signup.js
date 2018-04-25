@@ -1,21 +1,23 @@
-function select(selector){
+function select(selector) {
   return document.querySelector(selector);
 }
 
-
-var form =select(".form");
-var user_name=select(".user");
-var email = select("#email");
-var password = select("#password");
-var confirmPassword = select("#confirmPassword");
+function create(element) {
+  return document.createElement(element);
+}
+var signup_btn = select('.signupbtn');
+var form_content = select('.modal-content');
+var user_name = select('.usr-name');
+var email = select('.email');
+var psw = select('.psw');
+var psw_repeat = select('.psw-repeat');
 var error =select(".error");
+var emailRegex=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}/
 
-
-
-form.addEventListener("submit", function(event) {
+form_content.addEventListener("submit", function(event) {
   event.preventDefault();
-  var info = {user:user_name.value,email:email.value,password:password.value};
-  if (password.validity.valueMissing || confirmPassword.validity.valueMissing) {
+  var info = { email:email.value,user:user_name.value,password:psw.value};
+  if (psw.validity.valueMissing || psw_repeat.validity.valueMissing) {
     error.innerText = "Please enter a password";
     event.preventDefault();
   }
@@ -29,7 +31,7 @@ form.addEventListener("submit", function(event) {
   //   event.preventDefault();
   // }
 
-  if (password.value != confirmPassword.value) {
+  if (psw.value != psw_repeat.value) {
     error.innerText = "Passwords do not match";
     event.preventDefault();
   }
@@ -42,24 +44,23 @@ form.addEventListener("submit", function(event) {
   if (email.validity.valueMissing) {
     error.innerText = "Please enter an email address";
     event.preventDefault();
-  
+
   }else{
     fetchApi('/form','POST',info,(err,res)=>{
-  
-      if(res === 200){
+      console.log(res);
+      if(res.status === 200){
         window.location.pathname='/back';
-
       }
 
       else{
         error.innerText=err
       }
-      
-      
+
+
     })
     email.value='';
-    password.value='';
-    confirmPassword.value='';
+    psw.value='';
+    psw_repeat.value='';
     user_name.value='';
   }
 });

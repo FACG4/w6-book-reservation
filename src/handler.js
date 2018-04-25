@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const getData =require('./database/queries/get')
 const postData = require('./database/queries/post.js');
+const postUser = require('./database/queries/post_signup.js');
 const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
 const queryString= require('querystring');
@@ -24,7 +25,6 @@ const contentType = {
   ico : 'images/ico',
   js  : 'text/javascript'
 }
-
 const servePublic = (endpoint, res) => {
  const filePath =path.join(__dirname,'..','public',endpoint);
  const fileExtention = endpoint.split('.')[1];
@@ -46,13 +46,13 @@ const selectData = (req,res)=>{
   });
   req.on('end',()=>{
     data=JSON.parse(data);
- 
+
     getData(data.value , (err,result)=>{
       if(err) throw new Error(err);
       if(!result[0]){
         res.writeHead(200,{"Content-Type":"application/json"});
         res.end(JSON.stringify({ name: 'There are no avaliable books that fit your search'}))
-        
+
       } else {
         res.writeHead(200,{"Content-Type":"application/json"});
         res.end(JSON.stringify(result[0]))
@@ -81,19 +81,19 @@ const signup = (req,res) => {
   req.on('data', (chunk) => {
     data +=chunk;
     console.log(data);
-    
+
   });
-  
+
   req.on('end', ()=>  {
       data=JSON.parse(data);
       hashPassword(data.password, (errhash, reshash)=>{
       if(errhash) throw new Error(errhash)
       data.password=reshash;
       postData.postUser(data,(err,result)=>{
-      if(err){  
+      if(err){
         res.writeHead(500,{'Content-Type': 'application/json'});
         res.end()
-         }  
+         }
       else{
           var userDetails = result.rows[0];
           const SECRET = 'abc';

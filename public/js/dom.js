@@ -16,7 +16,7 @@ search.addEventListener("click", function(){
   if (!name_book){
     alert('please enter a book name')
   } else {
-    fetch('/getData','POST' ,name_book,function(res){
+    fetch('/getData','POST' ,{name_book},function(res){
       var startDateInput =create('input');
       startDateInput.setAttribute('type', 'date');
       startDateInput.setAttribute('id', 'startDate');
@@ -50,7 +50,7 @@ search.addEventListener("click", function(){
       }
       var oldUl = select('#bookContainer').firstElementChild;
       select('#bookContainer').replaceChild(ul, oldUl)
-      
+
       reserveButton.addEventListener('click', function(){
         var data = {bookId: res.id, startDate: startDateInput.value, endDate: endDateInput.value, userId: 1}
         fetch('/postData', 'POST', data, function(res){
