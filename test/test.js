@@ -2,13 +2,13 @@
 const tape = require('tape');
 const getData = require('../src/database/queries/get');
 const postData = require('../src/database/queries/post');
-const runDbBuild = require('../src/database/db_build');
+//const runDbBuild = require('../src/database/db_build');
 
 
 tape('test for get data ',(t)=>{
-  runDbBuild((err, res)=>{
+ 
   getData('gatsby', (err,res)=>{
-    console.log(res);
+    //console.log(res);
     if (err)return t.fail(err);
     const actual = res[0].name;
     const expected = 'The Great Gatsby';
@@ -16,11 +16,11 @@ tape('test for get data ',(t)=>{
     t.end();
   })
 });
-})
+
 
 
 tape('test for posting data', (t)=>{
-  runDbBuild((err, res)=>{
+
   const data={
     book_id:1,
     user_id:2,
@@ -35,11 +35,11 @@ tape('test for posting data', (t)=>{
     t.end();
   })
 });
-})
+
 
 
 tape('test for posting data', (t)=>{
-  runDbBuild((err, res)=>{
+
 
   const data={
     book_id:1,
@@ -55,4 +55,4 @@ tape('test for posting data', (t)=>{
     t.end();
   })
 });
-})
+

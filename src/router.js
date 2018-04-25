@@ -23,7 +23,11 @@ const router  = (req ,res)=>{
  //
  } else if (url === '/postData'){
     handler.post (req,res);
- }
+ }else if(url === '/form' && req.method === 'POST'){
+  handler.signup(req,res);
+}else if(url === '/back') {
+  handler.servePublic('index.html',res);
+}
   else{
     handler.servePublic(url, res);
   }

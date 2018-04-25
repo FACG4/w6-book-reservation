@@ -3,6 +3,20 @@ const path = require('path');
 const getData =require('./database/queries/get')
 const postData = require('./database/queries/post.js');
 const postUser = require('./database/queries/post_signup.js');
+const { parse } = require('cookie');
+const { sign, verify } = require('jsonwebtoken');
+const queryString= require('querystring');
+const bcrypt = require("bcryptjs");
+
+const hashPassword = (password, callback) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      callback(err);
+    } else {
+      bcrypt.hash(password, salt, callback);
+    }
+  });
+};
 
 const contentType = {
   html : 'text/html' ,
@@ -10,33 +24,6 @@ const contentType = {
   jpg : 'images/jpg',
   ico : 'images/ico',
   js  : 'text/javascript'
-}
-
-const signup = (req,res)=>{
-  let body = ''
-   req.on('data', (chunk) => {
-     // console.log(chunk);
-     body += chunk;
-
-   })
-   req.on('end', () => {
-     bodyData = JSON.parse(body);
-     console.log(bodyData);
-    postUser(bodyData,(err, result)=> {
-      if (err) throw new Error(err);
-      // res.writeHead(200, {'Content-Type': 'application/json'});
-      res.writeHead(
-        302,
-        {
-          'Location': '/back'
-          // 'Set-Cookie': `jwt=${cookie}; HttpOnly`
-        }
-      );
-      res.end();
-    });
-   });
-
-
 }
 const servePublic = (endpoint, res) => {
  const filePath =path.join(__dirname,'..','public',endpoint);
@@ -59,6 +46,7 @@ const selectData = (req,res)=>{
   });
   req.on('end',()=>{
     data=JSON.parse(data);
+
     getData(data.value , (err,result)=>{
       if(err) throw new Error(err);
       if(!result[0]){
@@ -81,29 +69,43 @@ const post = (req, response) => {
   });
   req.on('end', ()=>{
     data = JSON.parse(data);
-    postData(data.value, (err, res)=> {
+    postData.postData1(data.value, (err, res)=> {
       if (err) throw new Error(err);
       response.writeHead(200, {'Content-Type': 'application/json'});
-      console.log(res.rows[0]);
       response.end(JSON.stringify(res));
     });
   })
 }
+const signup = (req,res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data +=chunk;
+    console.log(data);
 
-// const postUser1 = (req, response) => {
-//   let data = '';
-//   req.on('data', (chunk) => {
-//     data +=chunk;
-//   });
-//   req.on('end', ()=>{
-//     data = JSON.parse(data);
-//     postUser(data, (err, res)=> {
-//       if (err) throw new Error(err);
-//       response.writeHead(200, {'Content-Type': 'application/json'});
-//       // console.log(res.rows[0]);
-//       response.end(JSON.stringify(res));
-//     });
-//   })
-// }
+  });
 
-module.exports= {servePublic,selectData, post, signup};
+  req.on('end', ()=>  {
+      data=JSON.parse(data);
+      hashPassword(data.password, (errhash, reshash)=>{
+      if(errhash) throw new Error(errhash)
+      data.password=reshash;
+      postData.postUser(data,(err,result)=>{
+      if(err){
+        res.writeHead(500,{'Content-Type': 'application/json'});
+        res.end()
+         }
+      else{
+          var userDetails = result.rows[0];
+          const SECRET = 'abc';
+          const cookie = sign(JSON.stringify(userDetails), SECRET);
+          res.writeHead(200,
+          {'Content-Type': 'application/json','Set-Cookie': `user_session=${cookie}; HttpOnly`});
+          res.end();
+         }
+       })
+    });
+});
+    };
+
+
+module.exports= {servePublic,selectData, post,signup};

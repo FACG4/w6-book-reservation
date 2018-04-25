@@ -9,9 +9,9 @@ author VARCHAR(50) DEFAULT 'unknown'
 );
 CREATE TABLE users(
 id SERIAL PRIMARY KEY,
+name VARCHAR(50),
 email VARCHAR(50) UNIQUE,
-user_name VARCHAR(50) UNIQUE,
-password VARCHAR(50) NOT NULL
+password TEXT
 );
 CREATE TABLE reservation(
 book_id INTEGER REFERENCES books(id),
