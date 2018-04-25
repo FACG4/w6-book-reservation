@@ -1,0 +1,31 @@
+{
+  "name": "w6-book-reservation",
+  "version": "1.0.0",
+  "description": "[Heroku App](https://w6-book.herokuapp.com/)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.3.1",
+    "env2": "^2.2.0",
+    "jsonwebtoken": "^8.2.1",
+    "pg": "^7.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG4/w6-book-reservation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG4/w6-book-reservation/issues"
+  },
+  "homepage": "https://github.com/FACG4/w6-book-reservation#readme"
+}
