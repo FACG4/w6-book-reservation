@@ -13,6 +13,7 @@ const router  = (req ,res)=>{
     handler.post (req,res);
  }else if(url === '/form' && req.method === 'POST'){
   handler.signup(req,res);
+
 }else if(url === '/back') {
   handler.servePublic('index.html',res);
 }

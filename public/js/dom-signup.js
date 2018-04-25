@@ -48,7 +48,7 @@ form_content.addEventListener("submit", function(event) {
   }else{
     fetchApi('/form','POST',info,(err,res)=>{
       console.log(res);
-      if(res === 200){
+      if(res.status === 200){
         window.location.pathname='/back';
       }
 
