@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/foundersandcoders/w6-book-reservation#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.3.1",
+    "crypto": "^1.0.1",
     "env2": "^2.2.0",
+    "jsonwebtoken": "^8.2.1",
     "pg": "^7.4.1"
   },
   "devDependencies": {

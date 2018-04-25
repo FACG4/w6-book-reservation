@@ -1,12 +1,14 @@
-function fetch(url,method ,value, callback){
+function fetchApi(url,method ,value, callback){
   var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
   if(xhr.readyState === 4 && xhr.status === 200){
-    var response = xhr.responseText;
-    callback(JSON.parse(response));
+    callback(null,xhr); 
+  }
+  else{
+    callback('User exists')
   }
 }
-var data= JSON.stringify({value})
+var data= JSON.stringify(value)
 xhr.open(method, url);
 xhr.send(data);
 }
