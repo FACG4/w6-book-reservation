@@ -7,24 +7,24 @@
   <title>Document</title>
 </head>
 <body>
-  <form class="form" action="/form" novalidate>
+  <form class="form"  novalidate>
         <label>name:
             <input type="text" class="user" name="username" required/>
         </label>
         <label>email:
-            <input id="email" type="email" required/>   
+            <input id="email" type="email" name="email" required/>   
         </label>        
         <lable for="password">password:
-            <input id="password" type="password" required pattern="^([0-9a-z])"/>
+            <input id="password" type="password" name="password" required pattern="^([0-9a-z])"/>
         </lable>
         <label for="confirmPassword">Confirm password:
-            <input id="confirmPassword" type="password" required pattern="^([0-9a-z])" />
+            <input id="confirmPassword" type="password" name="conpass" required pattern="^([0-9a-z])" />
         </label>
          
-          <button>Submit</button>
+          <input type="submit"/>
   </form>
   <p class="error"></p>
-  
-   <script src="singup.js"></script>
+    <script src="./js/request.js"></script>
+   <script src="./js/sing.js"></script>
 </body>
 </html>

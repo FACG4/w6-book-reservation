@@ -4,67 +4,62 @@ function select(selector){
 
 
 var form =select(".form");
-console.log(form);
 var user_name=select(".user");
 var email = select("#email");
-console.log(email);
 var password = select("#password");
 var confirmPassword = select("#confirmPassword");
 var error =select(".error");
-console.log(error);
 
 
 
-var checkEmail = function() {
-  if (email.validity.typeMismatch) {
-    error.textContent = "Please enter a valid email address";
-  } else if (email.validity.valueMissing) {
-    error.textContent ="Please enter an email address";
-  } else {
-   error.textContent ="";
-  
-  }
-};
-
-var checkPw = function() {
-  if (password.validity.patternMismatch) {
-   
-   error.textContent = "Password must contain at least eight characters, including one letter and one number";
-    
-  } else if (password.validity.valueMissing) {
-    error.textContent="Please enter a password";
-  } else {
-    error.textContent="";
-  
-  }
-};
-
-var checkConfirmPw = function() {
-  if (password.value != confirmPassword.value) {
-    error.textContent ="Passwords do not match";
-  } else if (confirmPassword.validity.valueMissing) {
-    error.textContent = "Please confirm your password";
-  } else {
-    error.textContent="";
-  
-  }
-};
-email.addEventListener("focusout", checkEmail);
-password.addEventListener("focusout", checkPw);
-confirmPassword.addEventListener("focusout", checkConfirmPw);
-var data = {email:email.value , user:user_name.value , password:password.value};
 form.addEventListener("submit", function(event) {
-  if (!checkEmail()) {
+  event.preventDefault();
+  var info = {user:user_name.value,email:email.value,password:password.value};
+  if (password.validity.valueMissing || confirmPassword.validity.valueMissing) {
+    error.innerText = "Please enter a password";
     event.preventDefault();
   }
-  if (!checkPw()) {
+
+  // if (
+  //   password.validity.patternMismatch ||
+  //   confirmPassword.validity.patternMismatch
+  // ) {
+  //   error.innerText =
+  //     "including one letter and one number";
+  //   event.preventDefault();
+  // }
+
+  if (password.value != confirmPassword.value) {
+    error.innerText = "Passwords do not match";
     event.preventDefault();
   }
-  if (!checkConfirmPw()) {
+
+  if (email.validity.typeMismatch) {
+    error.innerText = "Please enter a valid email address";
     event.preventDefault();
   }
-  fetch('/form','POST' ,data,()=>{
-    console.log("send data");
-    
-  })
+
+  if (email.validity.valueMissing) {
+    error.innerText = "Please enter an email address";
+    event.preventDefault();
+  
+  }else{
+    fetchApi('/form','POST',info,(err,res)=>{
+  
+      if(res === 200){
+        window.location.pathname='/back';
+
+      }
+
+      else{
+        error.innerText=err
+      }
+      
+      
+    })
+    email.value='';
+    password.value='';
+    confirmPassword.value='';
+    user_name.value='';
+  }
 });
